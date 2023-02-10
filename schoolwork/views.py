@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
 from .forms import StudentForm
 from django.contrib.auth.forms import AuthenticationForm 
-from django.contrib.auth import authenticate,login as LoginFun
+from django.contrib.auth import authenticate,login as LoginFun,logout as LogoutFun
+from .models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -44,3 +46,13 @@ def login(r):
             return LoginForm
     return render(r,"login.html",{"form":LoginForm})
 
+
+def logout(r):
+    LogoutFun(r)
+    return render(r,"login.html")
+
+@login_required()
+def manageStudents(r):
+    data = {}
+    data['students'] = Student.objects.all()
+    return render(r,"admin/manageStudents.html",data)
