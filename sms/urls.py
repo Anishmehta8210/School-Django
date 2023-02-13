@@ -26,6 +26,8 @@ urlpatterns = [
     path("accounts/login/",login,name="login"),
     path("accounts/logout/",logout,name="logout"),
     path("manage/student",manageStudents,name="manageStudent"),
+    path("manage/student/<int:id>/delete/",deleteStudent,name="deleteStudent"),
+    path("manage/student/<int:id>/edit/",editStudent,name="editStudent"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -2,34 +2,47 @@
 
  {% block content %}
 
- <div class="flex">
-    <table width="100%">
-        <tr>
-            <th>id</th>
-            <th>name</th>
-            <th>father</th>
-            <th>mother</th>
-            <th>gender</th>
-            <th>Address</th>
-            <th>Contact</th>
-            <th>Action</th>
-        </tr>
+ 
 
-        {% for student in students %}
+
+ <div class="container">
+    <div class="col-11 mx-auto">
+        <table class="table table-hover table-light mt-3">
+
+            <tr>
+                <th class="border">id</th>
+                <th class="border">name</th>
+                <th class="border">father</th>
+                <th class="border">mother</th>
+                <th class="border">gender</th>
+                <th class="border">Address</th>
+                <th class="border">Contact</th>
+                <th class="border"> Action</th>
+            </tr>
+
+            {% for student in students %}
 
         <tr>
-            <td>{{student.id}}</td>
-            <td>{{student.full_name}}</td>
-            <td>{{student.father_name}}</td>
-            <td>{{student.mother_name}}</td>
-            <td>{{student.gender}}</td>
-            <td>{{student.address}}</td>
-            <td>{{student.contact}}</td>
-            <td></td>
+            <td class="border">{{student.id}}</td>
+            <td class="border">{{student.full_name}}</td>
+            <td class="border">{{student.father_name}}</td>
+            <td class="border">{{student.mother_name}}</td>
+            <td class="border">{{student.gender}}</td>
+            <td class="border">{{student.address}}</td>
+            <td class="border">{{student.contact}}</td>
+            <td class="border p-2 gap-2">
+                <a href="{% url 'deleteStudent' student.id %}" class="btn btn-danger rounded">Delete</a>
+                <a href="{% url 'editStudent' student.id %}" class="btn btn-success rounded">Edit</a>
+                <a href="" class="btn btn-info rounded">View</a>
+            </td>
         </tr>
         {% endfor  %}
-    </table>
+
+        </table>
+    </div>
  </div>
+
+ 
 
 
  {% endblock  %}

@@ -56,3 +56,20 @@ def manageStudents(r):
     data = {}
     data['students'] = Student.objects.all()
     return render(r,"admin/manageStudents.html",data)
+
+
+@login_required()
+def deleteStudent(r,id):
+    std = Student.objects.get(pk=id)
+    std.delete()
+    return redirect(manageStudents)
+
+@login_required
+def editStudent(r,id):
+    std = Student.objects.get(pk=id)
+    form = StudentForm(r.POST or None,r.FILES or None,instance=std)
+
+    if r.method == "POST":
+        form.save()
+        return redirect(manageStudents)
+    return render(r,"admin/editStudent.html",{"form":form})
