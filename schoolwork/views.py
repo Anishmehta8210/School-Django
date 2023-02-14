@@ -73,3 +73,7 @@ def editStudent(r,id):
         form.save()
         return redirect(manageStudents)
     return render(r,"admin/editStudent.html",{"form":form})
+
+def viewStudent(r,id):
+    student = Student.objects.get(pk=id)
+    return render(r,"admin/viewStudent.html",{"student":student})

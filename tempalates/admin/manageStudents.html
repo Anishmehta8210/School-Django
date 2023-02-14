@@ -1,12 +1,12 @@
- {% extends 'base.html' %}
+ {% extends 'admin/adminbase.html' %}
 
- {% block content %}
+ {% block admin-content %}
 
  
 
 
  <div class="container">
-    <div class="col-11 mx-auto">
+    <div class="col-10 mx-auto">
         <table class="table table-hover table-light mt-3">
 
             <tr>
@@ -30,10 +30,10 @@
             <td class="border">{{student.gender}}</td>
             <td class="border">{{student.address}}</td>
             <td class="border">{{student.contact}}</td>
-            <td class="border p-2 gap-2">
-                <a href="{% url 'deleteStudent' student.id %}" class="btn btn-danger rounded">Delete</a>
-                <a href="{% url 'editStudent' student.id %}" class="btn btn-success rounded">Edit</a>
-                <a href="" class="btn btn-info rounded">View</a>
+            <td class="border p-2 gap-2 d-flex">
+                <a href="{% url 'deleteStudent' student.id %}" class="btn btn-danger rounded " >Delete</a>
+                <a href="{% url 'editStudent' student.id %}" class="btn btn-success rounded  ">Edit</a>
+                <a href="{% url 'viewStudent' student.id %}" class="btn btn-info rounded ">View</a>
             </td>
         </tr>
         {% endfor  %}
