@@ -6,7 +6,13 @@
     <div class="flex justify-between items-center">
         <h2 class="font-semibold text-2xl">View Student Record</h2>
         <div class="flex gap-2 p-2">
-            <a href="" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-700" >Approve</a>
+
+            {% if student.isApproved == False %}
+
+            <a href="{% url 'approve' student.id %}" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-700" >Approve</a>
+
+            {% endif %}
+           
             <a href="{% url 'deleteStudent' student.id %}" class="bg-red-500 text-white px-3 py-2 rounded hover:bg-red-700" >Delete</a>
             <a href="{% url 'editStudent' student.id %}" class="bg-blue-500 text-white px-3 py-2 rounded hover:bg-blue-700" >Edit</a>
         </div>
@@ -58,6 +64,16 @@
             <tr>
                 <th class="border p-2">City/State</th>
                 <td class="border p-2" colspan="2">{{student.city}},{{student.state}}-{{student.pin_code}}</td>
+            </tr>
+
+            <tr>
+                <th class="border p-2">Class Name</th>
+                <td class="border p-2" >{{student.className.className}}</td>
+
+                <th class="border p-2">IsApproved</th>
+                <td class="border p-2" >{{student.isApproved}}</td>
+
+
             </tr>
     
         </table>

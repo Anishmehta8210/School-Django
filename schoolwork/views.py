@@ -49,13 +49,21 @@ def login(r):
 
 def logout(r):
     LogoutFun(r)
-    return render(r,"login.html")
+    return redirect(homepage)
+   
 
 @login_required()
 def manageStudents(r):
     data = {}
-    data['students'] = Student.objects.all()
+    data['students'] = Student.objects.filter(isApproved=True)
     return render(r,"admin/manageStudents.html",data)
+
+@login_required
+def manageAdmission(r):
+    data = {}
+    data['students'] = Student.objects.filter(isApproved=False)
+    return render(r,"admin/manageStudents.html",data)
+
 
 
 @login_required()
@@ -73,7 +81,19 @@ def editStudent(r,id):
         form.save()
         return redirect(manageStudents)
     return render(r,"admin/editStudent.html",{"form":form})
-
+@login_required
 def viewStudent(r,id):
     student = Student.objects.get(pk=id)
     return render(r,"admin/viewStudent.html",{"student":student})
+@login_required
+def approve(r,id):
+    student = Student.objects.get(id=id,isApproved=False)
+    student.isApproved =True
+    student.save()
+    return redirect(manageStudents)
+
+@login_required
+def manageClasses(r):
+    data = {}
+    data['classes'] = Classes.objects.all()
+    return render(r,"admin/manageClasses.html",data)

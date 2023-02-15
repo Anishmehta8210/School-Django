@@ -44,6 +44,7 @@ class Student(models.Model):
     image = models.ImageField(upload_to="students/",null=True,blank=True)
     dob = models.DateField()
     className = models.OneToOneField("Classes",on_delete=models.CASCADE)
+    isApproved = models.BooleanField(default=False)
 
 
     def __str__(self):
