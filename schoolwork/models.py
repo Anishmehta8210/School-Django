@@ -43,7 +43,7 @@ class Student(models.Model):
     contact = models.CharField(max_length=25)
     image = models.ImageField(upload_to="students/",null=True,blank=True)
     dob = models.DateField()
-    className = models.OneToOneField("Classes",on_delete=models.CASCADE)
+    className = models.ForeignKey("Classes",on_delete=models.CASCADE)
     isApproved = models.BooleanField(default=False)
 
 
