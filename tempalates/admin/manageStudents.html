@@ -41,7 +41,7 @@
                 {{student.className.className}}
                 {% endif %}
             </td>
-            <td class="border p-2 gap-2 d-flex">
+            <td class="border p-2 gap-3 d-flex">
                 <a href="{% url 'deleteStudent' student.id %}" class="btn btn-danger rounded " >Delete</a>
                 <a href="{% url 'editStudent' student.id %}" class="btn btn-success rounded  ">Edit</a>
                 <a href="{% url 'viewStudent' student.id %}" class="btn btn-info rounded ">View</a>
