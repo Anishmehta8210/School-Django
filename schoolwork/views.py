@@ -106,7 +106,7 @@ def manageClasses(r):
             form.save()
             return redirect(manageClasses)
     return render(r,"admin/manageClasses.html",data)
-@login_required
+@login_required()
 def deleteClasses(r,id):
     classRecord = Classes.objects.get(pk=id)
     classRecord.delete()
