@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_list_or_404
 from .forms import *
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth import authenticate,login as LoginFun,logout as LogoutFun
@@ -77,6 +77,7 @@ def deleteStudent(r,id):
 def editStudent(r,id):
     std = Student.objects.get(pk=id)
     form = StudentForm(r.POST or None,r.FILES or None,instance=std)
+    form = EditStudentForm(r.POST or None,r.FILES or None,instance=std)
 
     if r.method == "POST":
         form.save()
@@ -118,4 +119,13 @@ def viewClassWise(r,className):
     data['title'] = "Manage " + className + " class students"
     data['students'] = Student.objects.filter(className__className = className,isApproved = True)
     return render(r,"admin/manageStudents.html",data)
+
+@login_required()
+def scanRFcode(r):
+    code = r.GET.get('code')
+    try:
+        std = get_list_or_404(Student,rf_code = code)
+        return redirect(viewStudent,std.id)
+    except:
+        return redirect(manageStudents)
 

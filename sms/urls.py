@@ -34,6 +34,7 @@ urlpatterns = [
     path("manage/student/<int:id>/approve/",approve,name="approve"),
     path("manage/classes",manageClasses,name="manageClasses"),
     path("manage/classes/view-class/<className>/",viewClassWise,name="viewclasswise"),
+    path("manage/student/scan",scanRFcode,name="scanRFcode"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

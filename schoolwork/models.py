@@ -45,6 +45,7 @@ class Student(models.Model):
     dob = models.DateField()
     className = models.ForeignKey("Classes",on_delete=models.CASCADE)
     isApproved = models.BooleanField(default=False)
+    rf_code= models.CharField(max_length=100,default=None,blank=True,null=True,unique=True)
 
 
     def __str__(self):

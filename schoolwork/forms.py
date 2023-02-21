@@ -2,11 +2,20 @@ from django.forms import ModelForm
 from .models import *
 
 
+
+
+
 class StudentForm(ModelForm):
     class Meta:
         model = Student
         fields = "__all__"
-        exclude = ("isApproved",)
+        exclude = ("isApproved","rf_code")
+
+
+class EditStudentForm(ModelForm):
+    class Meta:
+        model = Student
+        exclude =("isApproved",)
 
 
 
